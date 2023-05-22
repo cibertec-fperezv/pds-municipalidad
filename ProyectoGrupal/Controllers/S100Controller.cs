@@ -52,9 +52,8 @@ namespace ProyectoGrupal.Controllers
                 {
                     try
                     {
-
                         var addressId = string.Empty;
-                        var addressCommand = new SqlCommand("uso_Register_Address", sqlConnection, sqlTransaction);
+                        var addressCommand = new SqlCommand("usp_Register_Address", sqlConnection, sqlTransaction);
                         addressCommand.CommandType = CommandType.StoredProcedure;
                         addressCommand.Parameters.AddWithValue("@viaType", form.homeViaType);
                         addressCommand.Parameters.AddWithValue("@address", form.homeAddress ?? string.Empty);
