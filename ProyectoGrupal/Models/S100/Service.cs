@@ -2,7 +2,7 @@ namespace ProyectoGrupal.Models;
 
 public class Service
 {
-    public int ServiceType { get; set; }
-    public string ServiceCompanyName { get; set; }
-    public string ServiceSupply { get; set; }
+    public ServiceTypeModel serviceType { get; set; }
+    public string serviceCompanyName { get; set; }
+    public string serviceSupply { get; set; }
 }

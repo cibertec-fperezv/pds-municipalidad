@@ -2,13 +2,13 @@ namespace ProyectoGrupal.Models;
 
 public class FamilyMember
 {
-    public object DocumentType { get; set; }
-    public string DocumentNumber { get; set; }
-    public string LastNameDad { get; set; }
-    public string LastNameMom { get; set; }
-    public string Name { get; set; }
-    public string BornDate { get; set; }
-    public string Sex { get; set; }
-    public object Relationship { get; set; }
-    public bool CommonResident { get; set; }
+    public DocumentTypeModel documentType { get; set; }
+    public string documentNumber { get; set; }
+    public string lastNameDad { get; set; }
+    public string lastNameMom { get; set; }
+    public string name { get; set; }
+    public string bornDate { get; set; }
+    public string sex { get; set; }
+    public object relationship { get; set; }
+    public bool commonResident { get; set; }
 }
