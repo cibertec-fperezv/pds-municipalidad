@@ -1,0 +1,44 @@
+﻿@using ProyectoGrupal.Models;
+@model List<Menu>;
+
+@{
+    string menucollapse = "menucollapse";
+    int correlativo = 1;
+}
+
+
+ @foreach (var menu in Model){
+
+    if (menu.InverseIdMenuPadreNavigation.Count == 0)
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="@($"/{menu.controlador}/{menu.paginaAccion}")">
+                <i class="@menu.icono"></i>
+                <span>@menu.descripcion</span>
+            </a>
+        </li>
+    }
+    else
+    {
+        
+        <li class="nav-item">
+             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="@($"#{menucollapse}{correlativo}")">
+                 <i class="@menu.icono"></i>
+                 <span>@menu.descripcion</span>
+             </a>
+
+             <div id="@($"{menucollapse}{correlativo}")" class="collapse"  data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                    @foreach(var submenu in menu.InverseIdMenuPadreNavigation)
+                    {
+                        <a class="collapse-item" href="@($"/{submenu.controlador}/{submenu.paginaAccion}")">
+                            @submenu.descripcion
+                        </a>
+                    }
+                 </div>
+             </div>
+
+        </li>
+        correlativo = correlativo + 1;
+    }
+}

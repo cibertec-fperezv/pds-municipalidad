@@ -1,0 +1,380 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="mb-3">Registro de Solicitud - Pruebas de Software</h1>
+
+<head>
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true"/>
+</head>
+
+<form id="formS100" method="post">
+<h3 class="font-medium mt-3 mb-3">DATOS DE HOGAR</h3>
+
+<div class="row mb-2">
+    <div class="col-3">
+        <label class="">Tipo de V&iacute;a</label>
+        <select name="homeViaType" class="form-control">
+            @foreach (var viaType in (List<ViaType>)ViewBag.ViaTypes)
+            {
+                <option value="@viaType.Id">@viaType.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-9">
+        <label class="">Direcci&oacute;n</label>
+        <input type="text" name="homeAddress" class="form-control" placeholder=""/>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-2">
+        <label class="">Nro. Puerta</label>
+        <input type="text" name="homeDoorNumber" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-2">
+        <label class="">Bloque</label>
+        <input type="text" id="campo2" name="homeBlock" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-2">
+        <label class="">Piso</label>
+        <input type="text" name="homeFloor" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-2">
+        <label class="">Interior</label>
+        <input type="text" name="homeInterior" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-2">
+        <label class="">Manzana</label>
+        <input type="text" name="homeZone" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-2">
+        <label class="">Lote</label>
+        <input type="text" name="homeZoneNumber" class="form-control" placeholder=""/>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-12">
+        <label class="">Referencia</label>
+        <input type="text" name="homeReference" class="form-control" maxlength="300"/>
+    </div>
+</div>
+
+<h3 class="font-medium mt-3 mb-3">DATOS DE SOLICITANTE</h3>
+
+<div class="row mb-2">
+    <div class="col-4">
+        <label>Apellido Paterno</label>
+        <input type="text" name="requesterLastNameDad" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-4">
+        <label>Apellido Materno</label>
+        <input type="text" name="requesterLastNameMom" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-4">
+        <label>Nombres</label>
+        <input type="text" name="requesterName" class="form-control" placeholder=""/>
+    </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col-4">
+        <label>Correo Electr&oacute;nico</label>
+        <input type="text" name="requesterEmail" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-4">
+        <label>Celular</label>
+        <input type="text" name="requesterPhone" class="form-control" placeholder=""/>
+    </div>
+</div>
+
+<h3 class="font-medium mt-3 mb-3">DATOS DE FAMILIARES</h3>
+
+<div class="row mb-2">
+    <div class="col-4">
+        <label class="">Tipo de Documento</label>
+        <select name="familyMemberDocumentType" class="form-control">
+            @foreach (var documentType in (List<DocumentType>)ViewBag.DocumentTypes)
+            {
+                <option value="@documentType.Id">@documentType.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-4">
+        <label>Nro. Documento</label>
+        <input type="text" name="familyMemberDocumentNumber" class="form-control" maxlength="20"/>
+    </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col-4">
+        <label>Apellido Paterno</label>
+        <input type="text" name="familyMemberLastNameDad" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-4">
+        <label>Apellido Materno</label>
+        <input type="text" name="familyMemberLastNameMom" class="form-control" placeholder=""/>
+    </div>
+    <div class="col-4">
+        <label>Nombres</label>
+        <input type="text" name="familyMemberName" class="form-control" placeholder=""/>
+    </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col-4">
+        <label>Fecha de Nacimiento</label>
+        <input type="text" name="familyMemberBornDate" class="form-control" placeholder="dd/MM/yyyy"/>
+    </div>
+    <div class="col-4 align-content-center">
+        <label>Sexo</label>
+        <div>
+            <input type="radio" id="manSex" name="familyMemberSex" value="H"/>
+            <label for="manSex">Hombre</label>
+            <input type="radio" id="womanSex" name="familyMemberSex" value="M"/>
+            <label for="womanSex">Mujer</label>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-2">
+    <div class="col-4">
+        <label>Parentesco</label>
+        <select name="familyMemberRelationship" class="form-control">
+            @foreach (var relationship in (List<Relationship>)ViewBag.Relationships)
+            {
+                <option value="@relationship.Id">@relationship.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-4">
+        <label>&nbsp;</label>
+        <div>
+            <input type="checkbox" id="commonResident" name="familyMemberCommonResident"/>
+            <label for="commonResident">Residente Habitual</label>
+        </div>
+    </div>
+</div>
+
+<button id="btnAddFamilyMember" class="btn btn-secondary text-uppercase mb-3" type="button">agregar familiar</button>
+
+<table id="tbFamilyMembers" class="table mt-2 mb-2">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Documento de Identidad</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Sexo</th>
+        <th>Parentesco</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="6">Sin familiares</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3 class="font-medium mt-3 mb-3">SERVICIOS P&Uacute;BLICOS</h3>
+
+<div class="row mb-2">
+    <div class="col-4">
+        <label class="">Tipo de Servicio</label>
+        <select name="serviceType" class="form-control">
+            @foreach (var serviceType in (List<ServiceType>)ViewBag.ServiceTypes)
+            {
+                <option value="@serviceType.Id">@serviceType.Name</option>
+            }
+        </select>
+    </div>
+    <div class="col-4">
+        <label>Nombre de Empresa</label>
+        <input type="text" name="serviceCompanyName" class="form-control" maxlength="30"/>
+    </div>
+    <div class="col-4">
+        <label>Nro. Suministro</label>
+        <input type="text" name="serviceSupply" class="form-control" maxlength="10"/>
+    </div>
+</div>
+
+<button id="btnAddService" class="btn btn-secondary text-uppercase mb-3" type="button">agregar servicio</button>
+
+<table id="tbServices" class="table mt-2 mb-2">
+    <thead>
+    <tr>
+        <th>Tipo de Servicio</th>
+        <th>Nombre de Empresa</th>
+        <th>Nro. Suministro</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td colspan="4">Sin servicios</td>
+    </tr>
+    </tbody>
+</table>
+
+<button class="btn btn-primary btn-block float-right text-uppercase mt-3" type="submit">registrar</button>
+</form>
+
+<script type="text/javascript">
+$(document).ready(() => {
+    loadFamilyMembers();
+    loadServices();
+    
+    $('#btnAddService').click(() => {
+        const serviceType = {
+            id: $('[name="serviceType"]').val(),
+            name: $('[name="serviceType"] option:selected').text()
+        };
+        const serviceCompanyName = $('[name="serviceCompanyName"]').val();
+        const serviceSupply = $('[name="serviceSupply"]').val();
+        const service = {serviceType, serviceCompanyName, serviceSupply};
+      
+        const servicesValue = localStorage.getItem('services');
+        let services;
+        if (servicesValue) {
+            services = JSON.parse(servicesValue);
+            services.push(service);
+        } else {
+            services = [service];
+        }
+        localStorage.setItem('services', JSON.stringify(services));
+
+        loadServices();
+    });
+    
+    $('#btnAddFamilyMember').click(() => {
+        const documentType = {
+            id: $('[name="familyMemberDocumentType"]').val(),
+            name: $('[name="familyMemberDocumentType"] option:selected').text()
+        };
+        const documentNumber = $('[name="familyMemberDocumentNumber"]').val();
+        const lastNameDad = $('[name="familyMemberLastNameDad"]').val();
+        const lastNameMom = $('[name="familyMemberLastNameMom"]').val();
+        const name = $('[name="familyMemberName"]').val();
+        const bornDate = $('[name="familyMemberBornDate"]').val();
+        const sex = $('[name="familyMemberSex"]').val();
+        const relationship = {
+            id: $('[name="familyMemberRelationship"]').val(),
+            name: $('[name="familyMemberRelationship"] option:selected').text()
+        };
+        const commonResident = $('[name="familyMemberCommonResident"]').val();
+        const familyMember = {
+            documentType, documentNumber, lastNameDad, lastNameMom, name,
+            bornDate, sex, relationship, commonResident
+        };
+      
+        const familyMembersValue = localStorage.getItem('familyMembers');
+        let familyMembers;
+        if (familyMembersValue) {
+            familyMembers = JSON.parse(familyMembersValue);
+            familyMembers.push(familyMember);
+        } else {
+            familyMembers = [familyMember];
+        }
+        localStorage.setItem('familyMembers', JSON.stringify(familyMembers));
+
+        loadFamilyMembers();
+    });
+    
+    $('#formS100').submit(function (e) {
+        e.preventDefault();
+        const $form = $(this);
+        let formValues = convertFormToJSON($form);
+        
+        const servicesValue = localStorage.getItem('services');
+        if (servicesValue) {
+            const services = JSON.parse(servicesValue);
+            formValues = {...formValues, services}
+        }
+        
+        const familyMembersValue = localStorage.getItem('familyMembers');
+        if (familyMembersValue) {
+            const familyMembers = JSON.parse(servicesValue);
+            formValues = {...formValues, familyMembers}
+        }
+        
+        $.ajax({
+            url: '/S100/Register',
+            type: 'POST',
+            data: formValues,
+            success: function (data) {
+                alert(data);
+            }
+        });
+    });
+});
+
+function loadFamilyMembers() {
+    const servicesValue = localStorage.getItem('familyMembers');
+    if (servicesValue) {
+        const $tbFamilyMembers = $('#tbFamilyMembers > tbody'); 
+        $tbFamilyMembers.html('');
+        
+        const familyMembers = JSON.parse(servicesValue);
+        if (familyMembers.length > 0) {
+            for (let i = 0; i < familyMembers.length; i++) {
+                const familyMember = familyMembers[i];
+                $tbFamilyMembers.append(`
+                    <tr>
+                        <td>${familyMember.documentType.name}</td>
+                        <td>${familyMember.lastNameDad} ${familyMember.lastNameMom} ${familyMember.name}</td>
+                        <td>${familyMember.bornDate}</td>
+                        <td>${familyMember.sex}</td>
+                        <td>${familyMember.relationship.name}</td>
+                        <td><a href="#" onclick="deleteItem(${i}, 'familyMembers')">Eliminar</a></td>
+                    </tr>
+                `);
+            }
+        } else {
+            $tbFamilyMembers.append(`<tr><td colspan="4">Sin familiares</td></tr>`);
+        }
+    }
+}
+
+function loadServices() {
+    const servicesValue = localStorage.getItem('services');
+    if (servicesValue) {
+        const $tbServicesBody = $('#tbServices > tbody'); 
+        $tbServicesBody.html('');
+        
+        const services = JSON.parse(servicesValue);
+        if (services.length > 0) {
+            for (let i = 0; i < services.length; i++) {
+                const service = services[i];
+                $tbServicesBody.append(`
+                    <tr>
+                        <td>${service.serviceType.name}</td>
+                        <td>${service.serviceCompanyName}</td>
+                        <td>${service.serviceSupply}</td>
+                        <td><a href="#" onclick="deleteItem(${i}, 'services')">Eliminar</a></td>
+                    </tr>
+                `);
+            }
+        } else {
+            $tbServicesBody.append(`<tr><td colspan="4">Sin servicios</td></tr>`);
+        }
+    }
+}
+
+function deleteItem(index, storage) {
+    const items = JSON.parse(localStorage.getItem(storage));
+    items.splice(index, 1);
+    localStorage.setItem(storage, JSON.stringify(items));
+    // Refresh tables
+    loadFamilyMembers();
+    loadServices();
+}
+
+function convertFormToJSON($form) {
+  const array = $form.serializeArray();
+  const json = {};
+  $.each(array, function () {
+    json[this.name] = this.value || "";
+  });
+  return json;
+}
+</script>
