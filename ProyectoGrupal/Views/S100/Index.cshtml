@@ -293,7 +293,7 @@ $(document).ready(() => {
         
         const familyMembersValue = localStorage.getItem('familyMembers');
         if (familyMembersValue) {
-            const familyMembers = JSON.parse(servicesValue);
+                const familyMembers = JSON.parse(familyMembersValue);
             formValues = {...formValues, familyMembers}
         }
         
