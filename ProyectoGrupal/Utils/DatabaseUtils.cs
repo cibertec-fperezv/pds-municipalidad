@@ -16,8 +16,8 @@ public class DatabaseUtils
     {
         var connectionName = databaseConnection switch
         {
-            DatabaseConnection.ULE_PUENTE_PIEDRA1 => "Server=(local);DataBase=Ule_Puente_Piedra1;TrustServerCertificate=true;uid=sa;pwd=MSSQL.01062017",
-            DatabaseConnection.PROYECTO_MUNICIPALIDAD => "Server=(local);DataBase=Proyecto_Municipalidad;TrustServerCertificate=true;uid=sa;pwd=MSSQL.01062017",
+            DatabaseConnection.ULE_PUENTE_PIEDRA1 => "UlePuentePiedra1URL",
+            DatabaseConnection.PROYECTO_MUNICIPALIDAD => "ProyectoMunicipalidad",
             _ => throw new NotSupportedException("Connection Not Supported")
         };
         return new SqlConnection(_configuration["ConnectionStrings:" + connectionName]);
