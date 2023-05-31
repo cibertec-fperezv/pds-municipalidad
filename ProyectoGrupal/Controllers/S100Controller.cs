@@ -90,7 +90,7 @@ namespace ProyectoGrupal.Controllers
                             familyMemberCommand.Parameters.AddWithValue("@lastNameDad", fm.lastNameDad);
                             familyMemberCommand.Parameters.AddWithValue("@lastNameMom", fm.lastNameMom);
                             familyMemberCommand.Parameters.AddWithValue("@name", fm.name);
-                            familyMemberCommand.Parameters.AddWithValue("@relationship", fm.relationship);
+                            familyMemberCommand.Parameters.AddWithValue("@relationship", fm.relationship.id);
                             familyMemberCommand.Parameters.AddWithValue("@sex", fm.sex);
                             familyMemberCommand.Parameters.AddWithValue("@commonResident", fm.commonResident);
                             familyMemberCommand.Parameters.AddWithValue("@bornDate", fm.bornDate);

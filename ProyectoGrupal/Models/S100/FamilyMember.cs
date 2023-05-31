@@ -9,6 +9,6 @@ public class FamilyMember
     public string name { get; set; }
     public string bornDate { get; set; }
     public string sex { get; set; }
-    public object relationship { get; set; }
+    public RelationshipModel relationship { get; set; }
     public bool commonResident { get; set; }
 }
