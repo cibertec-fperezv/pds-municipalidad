@@ -256,7 +256,7 @@ $(document).ready(() => {
         const lastNameMom = $('[name="familyMemberLastNameMom"]').val();
         const name = $('[name="familyMemberName"]').val();
         const bornDate = $('[name="familyMemberBornDate"]').val();
-        const sex = $('[name="familyMemberSex"]').val();
+        const sex = $('[name="familyMemberSex"]:checked').val();
         const relationship = {
             id: $('[name="familyMemberRelationship"]').val(),
             name: $('[name="familyMemberRelationship"] option:selected').text()
@@ -302,6 +302,10 @@ $(document).ready(() => {
             type: 'POST',
             data: formValues,
             success: function (data) {
+                localStorage.removeItem("services")
+                    localStorage.removeItem("familyMembers")
+                    loadServices();
+                    loadFamilyMembers();
                 alert(data);
             }
         });
